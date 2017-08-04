@@ -34,21 +34,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/users', users);
 //app.use('/about', about);
 
-//var fortunes = [
-//    "Conquer your fears or they will conquer you.",
-//    "Rivers need springs.",
-//    "Do not fear what you don't know.",
-//    "Y.O.L.O.",
-//    "Hey Listen!",
-//];
-
-
+app.use(function (req, res, next) {
+    res.locals.showTests = app.get('env') !== 'production' &&
+        req.query.test === '1';
+    next();
+});
 
 app.get('/', function (req, res) {
     res.render('home');
 });
 app.get('/about', function (req, res) {
-    res.render('about', { fortune: fortune.getFortune() });
+    res.render('about', {
+        fortune: fortune.getFortune(),
+        pageTestScript: '/qa/tests-about.js'
+    });
 });
 
 // catch 404 and forward to error handler
