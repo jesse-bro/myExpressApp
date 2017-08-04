@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var fortune = require('./lib/fortune.js');
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -32,13 +34,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/users', users);
 //app.use('/about', about);
 
-var fortunes = [
-    "Conquer your fears or they will conquer you.",
-    "Rivers need springs.",
-    "Do not fear what you don't know.",
-    "Y.O.L.O.",
-    "Hey Listen!",
-];
+//var fortunes = [
+//    "Conquer your fears or they will conquer you.",
+//    "Rivers need springs.",
+//    "Do not fear what you don't know.",
+//    "Y.O.L.O.",
+//    "Hey Listen!",
+//];
 
 
 
@@ -46,9 +48,7 @@ app.get('/', function (req, res) {
     res.render('home');
 });
 app.get('/about', function (req, res) {
-    var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-    console.log(randomFortune);
-    res.render('about', { fortune: randomFortune });
+    res.render('about', { fortune: fortune.getFortune() });
 });
 
 // catch 404 and forward to error handler
