@@ -1,12 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bin",
-    "\\public\\images",
-    "\\public\\javascripts",
-    "\\public\\stylesheets",
-    "\\routes",
-    "\\views"
+    "\\views",
+    "\\views\\layouts"
   ],
   "SelectedNode": "\\app.js",
   "PreviewInSolutionExplorer": false
